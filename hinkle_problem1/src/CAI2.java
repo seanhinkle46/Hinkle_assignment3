@@ -5,7 +5,7 @@ import java.util.Scanner;
 //asks a multiplication problem,
 //if the answer is correct, print message then terminate,
 //if incorrect, continuously prompt with message
-public class CAI1 {
+public class CAI2 {
 	private static SecureRandom numgen = new SecureRandom();
 	private static Scanner in = new Scanner(System.in);
 	private static int studentAnswer;
@@ -46,12 +46,40 @@ public class CAI1 {
 		return (studentAnswer == correctAnswer);
 	}
 	
+	//prints one of four correct response messages randomly
 	public static void displayCorrectResponse() {
-		System.out.println("Very good!");
+		int rand = numgen.nextInt(4) + 1;
+		switch (rand) {
+		case 1:
+			System.out.println("Very good!");
+			break;
+		case 2:
+			System.out.println("Excellent!");
+			break;
+		case 3:
+			System.out.println("Nice work!");
+			break;
+		case 4:
+			System.out.println("Keep up the good work!");
+		}
 	}
-	 
+	
+	//prints one of four incorrect response messages randomly
 	public static void displayIncorrectResponse() {
-		System.out.println("No. Please try again.");
+		int rand = numgen.nextInt(4) + 1;
+		switch (rand) {
+		case 1:
+			System.out.println("No. Please try again.");
+			break;
+		case 2:
+			System.out.println("Wrong. Try once more.");
+			break;
+		case 3:
+			System.out.println("Don't give up!");
+			break;
+		case 4:
+			System.out.println("No. Keep trying.");
+		}
 	}
 	 
 	public static void main(String[] args) {
