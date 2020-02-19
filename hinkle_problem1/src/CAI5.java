@@ -15,6 +15,7 @@ public class CAI5 {
 	private static int numCorrect;
 	private static int difficultyLevel;
 	private static int problemType;
+	private static int quizMode;
 	private static double num1;
 	private static double num2;
 	
@@ -50,7 +51,7 @@ public class CAI5 {
 	//asks the question based on class variables set previously
 	private static void askQuestion() {
 		String operation;
-		switch (problemType) {
+		switch (quizMode) {
 		case 1:
 			operation = "plus";
 			System.out.printf("How much is %.0f %s %.0f?%n", num1, operation, num2);
@@ -140,15 +141,20 @@ public class CAI5 {
 			correctAnswer = num1-num2;
 			break;
 		case 4:
-			//This operates precise division using big decimal
-			//rounds it to 2 decimal places using typical rounding methods, and then converts it to a double
+			//This operates precise division using big decimal, first ensuring that there is no division by 0, then
+			//rounds it to 2 decimal places using typical rounding methods, then converts it to a double
+			if (num2 == 0) {
+				correctAnswer = 0;
+			} else {
 			correctAnswer = new BigDecimal(num1).divide(new BigDecimal(num2), 2, RoundingMode.HALF_UP).doubleValue();
+			}
 			break;
 		case 5:
 			// generate random number 1-4 to call back to this function, 
 			//therefore randomly assigning a problem type
-			int random = numgen.nextInt(4) + 1;
-			setCorrectAnswer(random);
+			quizMode = numgen.nextInt(4) + 1;
+			setCorrectAnswer(quizMode);
+			break;
 		}
 	}
 	
@@ -190,6 +196,9 @@ public class CAI5 {
 		System.out.println("4 = division problems only");
 		System.out.println("5 = random mix of all types: ");
 		problemType = in.nextInt();
+		//in addition to setting problem type, sets quizMode so that the method
+		//askQuestion can function with case 5, random mix of all types
+		quizMode = problemType;
 	}
 	
 	public static void main(String[] args) {
