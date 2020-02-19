@@ -19,12 +19,12 @@ public class CAI4 {
 	//then asks if the user wants to repeat the process
 	public static void quiz() {
 		//determines the number of digits involved in the problems
-		setDifficultyLevel();
+		readDifficulty();
 		//reset numCorrect if this is a restart
 		numCorrect = 0;
 		
 		for (int i = 0; i < 10; i++) {
-			setNumbers();
+			generateQuestionArgument();
 			askQuestion();
 			readResponse();
 			if (isAnswerCorrect()) {
@@ -105,7 +105,7 @@ public class CAI4 {
 		}
 	}
 	
-	public static void setNumbers() {
+	public static void generateQuestionArgument() {
 		switch (difficultyLevel) {
 		case 1:
 			num1 = numgen.nextInt(10);
@@ -129,7 +129,7 @@ public class CAI4 {
 			break;
 		}
 	}
-	public static void setDifficultyLevel() {
+	public static void readDifficulty() {
 		System.out.println("What difficulty level would you like to use? (ranges 1-4)");
 		difficultyLevel = in.nextInt();
 	}
