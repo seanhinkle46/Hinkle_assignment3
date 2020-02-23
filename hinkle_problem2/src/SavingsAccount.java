@@ -1,9 +1,10 @@
-import java.util.Scanner;
+//Sean Hinkle, Programming Assignment 3, Dr. Hollander
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class SavingsAccount {
-	static double annualInterestRate;
+	private static double annualInterestRate;
 	private double savingsBalance;
 	
 	public SavingsAccount(double balance) {
@@ -18,6 +19,8 @@ public class SavingsAccount {
 	public double getSavingsBalance() {
 		return savingsBalance;
 	}
+	
+	//Calculates monthly interest, then adds it to the savings balance
 	public void calculateMonthlyInterest() {
 		double monthlyInterest = new BigDecimal(savingsBalance).multiply(new BigDecimal(annualInterestRate)).divide(new BigDecimal(12), RoundingMode.HALF_UP).doubleValue();
 		savingsBalance += monthlyInterest;
@@ -28,10 +31,5 @@ public class SavingsAccount {
 			annualInterestRate = rate;
 		}
 	}
-	
-//	public String displayBalance() {
-//		return this.savingsBalance();
-//	}
-	
 }
 	
