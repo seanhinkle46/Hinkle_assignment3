@@ -1,3 +1,4 @@
+//Sean Hinkle, Programming assignment 3, Dr. Hollander
 import java.security.SecureRandom;
 import java.util.Scanner;
 import java.math.BigDecimal;
@@ -72,11 +73,12 @@ public class CAI5 {
 	}
 	
 	private static void readResponse() {
-		//for the sake of division problems, rounds student answer to two decimals
+		//for the sake of division problems, rounds student answer to two decimals. The answer is also rounded to two decimals, so the two can be directly compared
 		studentAnswer = new BigDecimal(in.nextDouble()).divide(new BigDecimal(1.0), 2, RoundingMode.HALF_UP).doubleValue();
 	}
 	
 	//checks student answer versus correct answer generated in quiz method
+	//***This can be an equals comparison*** because both numbers are rounded using the same method, RoundingMode.HALF_UP
 	public static boolean isAnswerCorrect() {
 		return (studentAnswer == correctAnswer);
 	}
